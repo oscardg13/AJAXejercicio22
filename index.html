@@ -3,11 +3,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Ejercicio 2 - Actualizacion periodica de contenidos</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="cliente/style.css">
 	
 </head>
 <body onload="iniciar()">
 	<div id="ticker"></div>
+
 	<div id="acciones">
 		<input type="button" onclick="detener()" id="detener" value="Detener" />
 	</div>
@@ -17,6 +18,7 @@
 		<P>onec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </P>
 
 		<h2>Lodolor sit amet, consectetuer adipiscing elit.</h2>
+
 		<P>onec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </P>
 	</div>
 
@@ -34,7 +36,7 @@
 				if(ajaxRes.readyState == 4 && ajaxRes.status == 200)
 					document.getElementById("contenidos").innerHTML=ajaxRes.responseText
 			}
-			ajaxRes.open("GET","../servidor/generaContenidos.php",true)
+			ajaxRes.open("GET","servidor/generaContenidos.php",true)
 
 			ajaxRes.send()
 		}
