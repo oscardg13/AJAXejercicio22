@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Ejercicio 2 - Actualizacion periodica de contenidos</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> 
+	</script> 
+</head>
+<body onload="iniciar()">
+	<div id="ticker"></div>
+	<div id="acciones">
+		<input type="button" onclick="detener()" id="detener" value="Detener" />
+	</div>
+
+	<div id="contenidos">
+		<h1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</h1>
+		<P>onec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </P>
+
+		<h2>Lodolor sit amet, consectetuer adipiscing elit.</h2>
+		<P>onec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </P>
+	</div>
+
+	<script>
+		var estado;
+
+		function iniciar(){
+			timer=setInterval("update()",2000);
+			estado=true;
+		}
+
+		function update(){
+			var ajaxRes= new XMLHttpRequest()
+			ajaxRes.onreadystatechange=function(){
+				if(ajaxRes.readyState == 4 && ajaxRes.status == 200)
+					document.getElementById("contenidos").innerHTML=ajaxRes.responseText
+			}
+			ajaxRes.open("GET","../servidor/generaContenidos.php",true)
+
+			ajaxRes.send()
+		}
+
+		function detener(){
+			if (estado) {
+				window.clearInterval(timer)
+				estado=false
+				document.getElementById("detener").value="Iniciar"
+			}
+			else{
+				iniciar()
+				document.getElementById("detener").value="Detener"
+			}
+		}
+
+	</script>
+	
+
+</body>
+</html>
